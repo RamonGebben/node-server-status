@@ -1,0 +1,16 @@
+{
+  "name": "node-status-page",
+  "version": "1.0.0",
+  "description": "A simple app that will check the availability of our services",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Julien Lengrand-Lambert",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^13.4.1",
+    "node-fetch": "^1.5.3"
+  }
+}
