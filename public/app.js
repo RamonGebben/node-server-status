@@ -26,10 +26,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     function fillStatusList(jsonStatus){
-        var statusDiv = document.getElementById("status");
-        var table = document.createElement("TABLE");
-        statusDiv.appendChild(table);
-
+        var table = document.getElementById("status");
+        
         var tr = document.createElement("tr");
         table.appendChild(tr);
 
