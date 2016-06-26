@@ -3,7 +3,9 @@ const Hapi = require('hapi');
 const fetch = require('node-fetch');
 
 const server = new Hapi.Server();
-const keystoneUrl = 'http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive';
+
+const serverName = "Keystone Demo Catalogue"
+const serverUrl = 'http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive';
 
 server.connection({ port: 4567 });
 
@@ -13,14 +15,19 @@ server.register(require('inert'), (err) => {
     method: 'GET',
     path: '/status',
     handler(request, reply) {
-      fetch(keystoneUrl)
+      fetch(serverUrl)
         .then(res => {
-          reply(res);
+          reply({
+            name: serverName,
+            url: serverUrl,
+            status: true
+          });
         })
         .catch((err) => {
           reply({
-            status: 500,
-            error: err
+            name: serverName,
+            url: serverUrl,
+            status: false
           });
         });
     }

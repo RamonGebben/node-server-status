@@ -13,5 +13,8 @@
     "hapi": "^13.4.1",
     "inert": "^4.0.0",
     "node-fetch": "^1.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }
