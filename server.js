@@ -49,6 +49,14 @@ server.register(require('inert'), (err) => {
     }
   });
 
+    server.route({
+    method: 'GET',
+    path: '/app.css',
+    handler: function (request, reply) {
+      reply.file('./public/app.css');
+    }
+  });
+
   server.start((err) => {
     if (err) throw err;
     console.log('Server running at:', server.info.uri);

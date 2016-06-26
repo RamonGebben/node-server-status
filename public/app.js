@@ -26,18 +26,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     function fillStatusList(jsonStatus){
-        var table = document.getElementById("status");
-        
-        var tr = document.createElement("tr");
-        table.appendChild(tr);
+        var statusDiv = document.getElementById("status");
 
-        var tdName = document.createElement("td");
-        tdName.innerHTML = jsonStatus.name;
-        tr.appendChild(tdName);
-
-        var tdStatus = document.createElement("td");
-        tdStatus.innerHTML = jsonStatus.status;
-        tr.appendChild(tdStatus);
-
+        var panelDiv = createPanel(jsonStatus);
+        statusDiv.appendChild(panelDiv);
     }
+
+    function createPanel(jsonStatus){
+        var panelDiv = document.createElement("div");
+        panelDiv.className = "panel panel-default";
+
+        var panelBody = document.createElement("div");
+        panelBody.className = "panel-body";
+        panelBody.innerHTML = createContent(jsonStatus);
+
+        panelDiv.appendChild(panelBody);
+
+        return panelDiv;
+    }
+
+    function createContent(jsonStatus){
+        return "<strong>" + jsonStatus.name +  "</strong>" + " - " + jsonStatus.status;
+    }
+
 });
