@@ -4,12 +4,34 @@ const fetch = require('node-fetch');
 
 const server = new Hapi.Server();
 
-const serverName = "Keystone Demo Catalogue"
-const serverUrl = 'http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive';
+
+const serverList = [
+    {
+        "serverName":"Keystone Demo Catalogue",
+        "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
+    },
+    {
+        "serverName":"Keystone Demo Catalogue 2",
+        "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
+    }
+];
+// const serverName = "Keystone Demo Catalogue"
+// const serverUrl = 'http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive';
 
 server.connection({ port: 4567 });
 
 server.register(require('inert'), (err) => {
+
+  /*
+  Returns information about all of the servers that can be checked
+  */
+  server.route({
+    method: 'GET',
+    path: '/servers',
+    handler(request, reply){
+      reply(serverList);
+    }
+  });
 
   server.route({
     method: 'GET',
@@ -18,15 +40,15 @@ server.register(require('inert'), (err) => {
       fetch(serverUrl)
         .then(res => {
           reply({
-            name: serverName,
-            url: serverUrl,
+            name: serverList[0].serverName,
+            url: serverList[0].serverUrl,
             status: true
           });
         })
         .catch((err) => {
           reply({
-            name: serverName,
-            url: serverUrl,
+            name: serverList[0].serverName,
+            url: serverList[0].serverUrl,
             status: false
           });
         });
