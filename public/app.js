@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function createPanel(jsonStatus){
         var panelDiv = document.createElement("div");
-        panelDiv.className = "panel panel-default";
+        panelDiv.className = setPanelStatusColor(jsonStatus.status);
 
         var panelBody = document.createElement("div");
-        panelBody.className = "panel-body";
+        panelBody.className = "panel-heading";
         panelBody.innerHTML = createContent(jsonStatus);
 
         panelDiv.appendChild(panelBody);
@@ -46,7 +46,39 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function createContent(jsonStatus){
-        return "<strong>" + jsonStatus.name +  "</strong>" + " - " + jsonStatus.status;
+        return "<strong>" + 
+            "<a href=\"" + jsonStatus.url + "\">" + jsonStatus.name + "</a>"
+            +  "</strong>" + setstatus(jsonStatus.status);
     }
 
+    function setstatus(status){
+        return "<span class=\" " + setStatusIcon(status) + " pull-right\" aria-hidden=\"true\"></span>";
+    }
+
+    function setStatusIcon(status){
+        if(status){
+            return "glyphicon glyphicon-ok";
+        }
+        else{
+            return "glyphicon glyphicon-remove";
+        }
+    }
+
+    function setStatusColor(status){
+        if(status){
+            return "style=\"color:green\"";
+        }
+        else{
+            return "style=\"color:red\"";
+        }
+    }
+
+        function setPanelStatusColor(status){
+        if(status){
+            return "panel panel-success";
+        }
+        else{
+            return "panel panel-danger";
+        }
+    }
 });

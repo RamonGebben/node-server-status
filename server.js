@@ -49,11 +49,19 @@ server.register(require('inert'), (err) => {
     }
   });
 
-    server.route({
+  server.route({
     method: 'GET',
     path: '/app.css',
     handler: function (request, reply) {
       reply.file('./public/app.css');
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/background.jpg',
+    handler: function (request, reply) {
+      reply.file('./public/background.jpg');
     }
   });
 
