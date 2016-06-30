@@ -45,7 +45,7 @@ server.register(require('inert'), (err) => {
         for(var i = 0; i < serverList.length; i++){
           if(encodeURIComponent(serverList[i].serverName) === encodeURIComponent(serverSearch)){
             found = true;
-            
+
             fetch(serverList[0].serverUrl)
               .then(res => {
                 reply({

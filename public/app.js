@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     // console.log(jsonResponse);
 
                     if(jsonResponse.length < 1){
-                        console.log("No servers to search for");                
+                        console.log("No servers to search for");        
+                        fillEmptyStatus();        
                     }
 
                     for(var i = 0; i < jsonResponse.length; i++){
@@ -59,6 +60,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         Utility methods
     */
 
+    function fillEmptyStatus(){
+        var statusDiv = document.getElementById("status");
+
+        var noServerMessage = document.createElement("p");
+        noServerMessage.innerHTML = "No servers to search for";
+
+        statusDiv.appendChild(noServerMessage);        
+    }
 
     function fillStatusList(jsonStatus){
         var statusDiv = document.getElementById("status");
