@@ -1,6 +1,7 @@
 'use strict';
 const Hapi = require('hapi');
 const fetch = require('node-fetch');
+const Boom = require('boom');
 
 const server = new Hapi.Server();
 
@@ -15,8 +16,6 @@ const serverList = [
         "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
     }
 ];
-// const serverName = "Keystone Demo Catalogue"
-// const serverUrl = 'http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive';
 
 server.connection({ port: 4567 });
 
@@ -35,9 +34,26 @@ server.register(require('inert'), (err) => {
 
   server.route({
     method: 'GET',
+    path: '/status/{serverName}',
+    handler(request, reply)
+    {
+        var response = Boom.notFound('Unknown server name');
+
+        var serverSearch = request.params.serverName;  
+        for(var i = 0; i < serverList.length; i++){
+          if(encodeURIComponent(serverList[i].serverName) === encodeURIComponent(serverSearch)){
+            response = serverList[i];
+          }
+        }
+        reply(response);
+    }  
+  })
+
+  server.route({
+    method: 'GET',
     path: '/status',
     handler(request, reply) {
-      fetch(serverUrl)
+      fetch(serverList[0].serverUrl)
         .then(res => {
           reply({
             name: serverList[0].serverName,
