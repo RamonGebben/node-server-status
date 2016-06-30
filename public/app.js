@@ -4,25 +4,60 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var isUp = document.getElementById('isUp');
 
     var statusUrl = "/status";
+    var serversUrl = "/servers";
 
-    fetch(statusUrl)
+    fetch(serversUrl)
         .then(function (response) {
             console.log(response.status);
             if(response.ok){
                 console.log("Status application running fine");
-                response.json().then(function (json) {
-                    console.log(json);
-                    fillStatusList(json);
+                response.json().then(function (jsonResponse) {
+                    // console.log(jsonResponse);
+
+                    if(jsonResponse.length < 1){
+                        console.log("No servers to search for");                
+                    }
+
+                    for(var i = 0; i < jsonResponse.length; i++){
+                        //For each, retrieve and print the status
+
+                        var serverInfo = jsonResponse[i];
+                        var completeStatusUrl = statusUrl + "/" + serverInfo.serverName;
+                        console.log("Fetching status for " + completeStatusUrl);                
+                        
+                        fetch(completeStatusUrl)
+                            .then(function (response) {
+                                console.log(response.status);
+                                if(response.ok){
+                                    console.log("Status application running fine");
+                                    response.json().then(function (json) {
+                                        console.log(json);
+                                        // fillStatusList(json);
+                                    });
+
+                                }
+                                else{
+                                    console.log("The status application seems to run into troubles for " + completeStatusUrl);
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log('There has been a problem with your fetch operation: ' + error.message);
+                            });
+                    }
                 });
 
             }
             else{
-                console.log("The status application seems to run into troubles");
+                console.log("Impossible to fetch server list");
             }
         })
         .catch(function (error) {
             console.log('There has been a problem with your fetch operation: ' + error.message);
         });
+
+    /*
+        Utility methods
+    */
 
 
     function fillStatusList(jsonStatus){

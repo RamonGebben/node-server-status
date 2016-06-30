@@ -39,37 +39,36 @@ server.register(require('inert'), (err) => {
     {
         var response = Boom.notFound('Unknown server name');
 
-        var serverSearch = request.params.serverName;  
+        var serverSearch = request.params.serverName;
+        var found = false;
+         
         for(var i = 0; i < serverList.length; i++){
           if(encodeURIComponent(serverList[i].serverName) === encodeURIComponent(serverSearch)){
-            response = serverList[i];
+            found = true;
+            
+            fetch(serverList[0].serverUrl)
+              .then(res => {
+                reply({
+                  name: serverList[0].serverName,
+                  url: serverList[0].serverUrl,
+                  status: true
+                });
+              })
+              .catch((err) => {
+                reply({
+                  name: serverList[0].serverName,
+                  url: serverList[0].serverUrl,
+                  status: false
+                });
+              });
           }
         }
-        reply(response);
+
+        if(!found){
+          reply(response);
+        }
     }  
   })
-
-  server.route({
-    method: 'GET',
-    path: '/status',
-    handler(request, reply) {
-      fetch(serverList[0].serverUrl)
-        .then(res => {
-          reply({
-            name: serverList[0].serverName,
-            url: serverList[0].serverUrl,
-            status: true
-          });
-        })
-        .catch((err) => {
-          reply({
-            name: serverList[0].serverName,
-            url: serverList[0].serverUrl,
-            status: false
-          });
-        });
-    }
-  });
 
   server.route({
     method: 'GET',
