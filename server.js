@@ -51,15 +51,15 @@ server.register(require('inert'), (err) => {
       return fetch(serverInList.serverUrl)
         .then(res => {
           reply({
-            name: server.serverName,
-            url: server.serverUrl,
+            name: serverInList.serverName,
+            url: serverInList.serverUrl,
             status: true
           });
         })
         .catch((err) => {
           reply({
-            name: server.serverName,
-            url: server.serverUrl,
+            name: serverInList.serverName,
+            url: serverInList.serverUrl,
             status: false
           });
         });
