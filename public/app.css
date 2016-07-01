@@ -3,3 +3,48 @@
     max-width: 730px;
   }
 }
+
+input[type="text"] {
+  border: 1px solid #ddd;
+}
+
+input[type="text"]:focus {
+  border: 1px solid #aaa;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  padding: 2em;
+  display: none;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-body {
+  max-width: 800px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0.5em;
+  position: relative;
+}
+
+.modal-body h2 {
+  color: #2b3e50;
+  margin: 0 0 1em 0;
+}
+
+.close-modal {
+  position: absolute;
+  top: 0em; right: 0.3em;
+  border: 0; background: none;
+  color: #2b3e50;
+  font-size: 3em;
+}
+
+.input-group {
+  margin-bottom: 1em;
+}

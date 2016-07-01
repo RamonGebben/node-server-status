@@ -1,0 +1,120 @@
+2016-07-01T16:18:45.710072000 0.035842s notice: Recursively removing directory /Users/ramon/Projects/node-server-status/rethinkdb_data/tmp
+2016-07-01T16:18:45.711415000 0.037188s notice: Initializing directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T16:18:45.711495000 0.037264s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/ramon/Projects/node-server-status/rethinkdb_data' did not already exist or is empty.)
+2016-07-01T16:18:45.711514000 0.037283s notice: Running rethinkdb 2.0.3 (CLANG 6.1.0 (clang-602.0.53))...
+2016-07-01T16:18:45.715729000 0.041499s notice: Running on Darwin 15.3.0 x86_64
+2016-07-01T16:18:45.715795000 0.041564s notice: Loading data from directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T16:18:45.853163000 0.178932s info: Automatically using cache size of 100 MB
+2016-07-01T16:18:45.853172000 0.178941s warn: Cache size does not leave much memory for server and query overhead (available memory: 1019 MB).
+2016-07-01T16:18:45.853186000 0.178955s warn: Cache size is very low and may impact performance.
+2016-07-01T16:18:45.854696000 0.180465s notice: Listening for intracluster connections on port 29015
+2016-07-01T16:18:45.857851000 0.183620s notice: Listening for client driver connections on port 28015
+2016-07-01T16:18:45.857942000 0.183711s notice: Listening for administrative HTTP connections on port 8080
+2016-07-01T16:18:45.857946000 0.183715s notice: Listening on addresses: 127.0.0.1, ::1
+2016-07-01T16:18:45.857950000 0.183719s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-01T16:18:45.857954000 0.183722s notice: Server ready, "eve_buro_info_nl_q2s" ba3d54a5-db79-43c6-b2ad-a84b574a582c
+2016-07-01T16:18:46.520848000 0.846571s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-07-01T16:20:05.004670000 79.328413s notice: Server got SIGINT from pid 355, uid 501; shutting down...
+2016-07-01T16:20:05.005919000 79.329661s notice: Shutting down client connections...
+2016-07-01T16:20:05.006146000 79.329888s notice: All client connections closed.
+2016-07-01T16:20:05.006153000 79.329895s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-07-01T16:20:05.010806000 79.334548s notice: Storage engine shut down.
+2016-07-01T16:20:36.460295000 0.057691s notice: Running rethinkdb 2.2.5 (CLANG 7.0.2 (clang-700.1.81))...
+2016-07-01T16:20:36.467191000 0.064584s notice: Running on Darwin 15.3.0 x86_64
+2016-07-01T16:20:36.467234000 0.064625s notice: Loading data from directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T16:20:36.472047000 0.069439s notice: Migrating cluster metadata to v2.2
+2016-07-01T16:20:36.473907000 0.071299s notice: Migrating file to serializer version 2.2.
+2016-07-01T16:20:36.506035000 0.103427s notice: Migrating auth metadata
+2016-07-01T16:20:36.528956000 0.126348s info: Automatically using cache size of 100 MB
+2016-07-01T16:20:36.528974000 0.126366s warn: Cache size does not leave much memory for server and query overhead (available memory: 855 MB).
+2016-07-01T16:20:36.528992000 0.126383s warn: Cache size is very low and may impact performance.
+2016-07-01T16:20:36.530261000 0.127653s notice: Listening for intracluster connections on port 29015
+2016-07-01T16:20:36.535220000 0.132612s notice: Listening for client driver connections on port 28015
+2016-07-01T16:20:36.535483000 0.132875s notice: Listening for administrative HTTP connections on port 8080
+2016-07-01T16:20:36.535488000 0.132879s notice: Listening on addresses: 127.0.0.1, ::1
+2016-07-01T16:20:36.535489000 0.132880s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-01T16:20:36.535491000 0.132883s notice: Server ready, "eve_buro_info_nl_q2s" ba3d54a5-db79-43c6-b2ad-a84b574a582c
+2016-07-01T16:20:37.795365000 1.392709s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-07-01T16:21:56.860332000 80.455650s notice: Server got SIGINT from pid 355, uid 501; shutting down...
+2016-07-01T16:21:56.861338000 80.456656s notice: Shutting down client connections...
+2016-07-01T16:21:56.861525000 80.456843s notice: All client connections closed.
+2016-07-01T16:21:56.861531000 80.456848s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-07-01T16:21:56.865008000 80.460326s notice: Storage engine shut down.
+2016-07-01T16:22:35.172281000 0.042128s notice: Running rethinkdb 2.2.5 (CLANG 7.0.2 (clang-700.1.81))...
+2016-07-01T16:22:35.180463000 0.050306s notice: Running on Darwin 15.3.0 x86_64
+2016-07-01T16:22:35.180500000 0.050343s notice: Loading data from directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T16:22:35.203396000 0.073239s info: Automatically using cache size of 100 MB
+2016-07-01T16:22:35.203405000 0.073248s warn: Cache size does not leave much memory for server and query overhead (available memory: 912 MB).
+2016-07-01T16:22:35.203451000 0.073294s warn: Cache size is very low and may impact performance.
+2016-07-01T16:22:35.204686000 0.074528s notice: Listening for intracluster connections on port 29015
+2016-07-01T16:22:35.207352000 0.077195s notice: Listening for client driver connections on port 28015
+2016-07-01T16:22:35.207577000 0.077419s notice: Listening for administrative HTTP connections on port 8080
+2016-07-01T16:22:35.207581000 0.077423s notice: Listening on addresses: 127.0.0.1, ::1
+2016-07-01T16:22:35.207581001 0.077424s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-01T16:22:35.207584000 0.077426s notice: Server ready, "eve_buro_info_nl_q2s" ba3d54a5-db79-43c6-b2ad-a84b574a582c
+2016-07-01T16:22:36.506930000 1.376773s notice: A newer version of the RethinkDB server is available: 2.3.4. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-07-01T16:23:30.978053000 55.846468s notice: Server got SIGINT from pid 355, uid 501; shutting down...
+2016-07-01T16:23:30.978247000 55.846662s notice: Shutting down client connections...
+2016-07-01T16:23:30.978375000 55.846789s notice: All client connections closed.
+2016-07-01T16:23:30.978379000 55.846794s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-07-01T16:23:30.982613000 55.851028s notice: Storage engine shut down.
+2016-07-01T16:25:46.615005000 0.008891s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2016-07-01T16:25:46.619855000 0.013738s notice: Running on Darwin 15.3.0 x86_64
+2016-07-01T16:25:46.619941000 0.013823s notice: Loading data from directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T16:25:46.624671000 0.018553s notice: Migrating cluster metadata to v2.3
+2016-07-01T16:25:46.641558000 0.035440s info: Automatically using cache size of 100 MB
+2016-07-01T16:25:46.641566000 0.035447s warn: Cache size does not leave much memory for server and query overhead (available memory: 987 MB).
+2016-07-01T16:25:46.641570000 0.035451s warn: Cache size is very low and may impact performance.
+2016-07-01T16:25:46.642568000 0.036450s notice: Listening for intracluster connections on port 29015
+2016-07-01T16:25:46.644108000 0.037989s notice: Listening for client driver connections on port 28015
+2016-07-01T16:25:46.644428000 0.038309s notice: Listening for administrative HTTP connections on port 8080
+2016-07-01T16:25:46.644431000 0.038312s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2016-07-01T16:25:46.644435000 0.038316s notice: Listening on driver addresses: 127.0.0.1, ::1
+2016-07-01T16:25:46.644437000 0.038318s notice: Listening on http addresses: 127.0.0.1, ::1
+2016-07-01T16:25:46.644440000 0.038321s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-01T16:25:46.644444000 0.038325s notice: Server ready, "eve_buro_info_nl_q2s" ba3d54a5-db79-43c6-b2ad-a84b574a582c
+2016-07-01T16:26:50.176832000 63.569102s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: Starting a new Raft election for term 1.
+2016-07-01T16:26:50.177722000 63.569992s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: Added replica on this server.
+2016-07-01T16:26:50.186332000 63.578602s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: This server is Raft leader for term 1. Latest log index is 0.
+2016-07-01T20:17:32.343121000 6040.510804s notice: Server got SIGINT from pid 355, uid 501; shutting down...
+2016-07-01T20:17:32.343368000 6040.511051s notice: Shutting down client connections...
+2016-07-01T20:17:32.343863000 6040.511545s notice: All client connections closed.
+2016-07-01T20:17:32.343875000 6040.511557s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-07-01T20:17:32.351987000 6040.519670s notice: Storage engine shut down.
+2016-07-01T20:17:33.461374000 0.329000s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2016-07-01T20:17:33.470836000 0.338459s notice: Running on Darwin 15.3.0 x86_64
+2016-07-01T20:17:33.470889000 0.338512s notice: Loading data from directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T20:17:33.489686000 0.357308s info: Automatically using cache size of 100 MB
+2016-07-01T20:17:33.489694000 0.357316s warn: Cache size does not leave much memory for server and query overhead (available memory: 739 MB).
+2016-07-01T20:17:33.489699000 0.357321s warn: Cache size is very low and may impact performance.
+2016-07-01T20:17:33.490558000 0.358180s notice: Listening for intracluster connections on port 29015
+2016-07-01T20:17:33.506707000 0.374329s notice: Listening for client driver connections on port 28015
+2016-07-01T20:17:33.506940000 0.374562s notice: Listening for administrative HTTP connections on port 8080
+2016-07-01T20:17:33.506960000 0.374582s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2016-07-01T20:17:33.506962000 0.374584s notice: Listening on driver addresses: 127.0.0.1, ::1
+2016-07-01T20:17:33.506965000 0.374586s notice: Listening on http addresses: 127.0.0.1, ::1
+2016-07-01T20:17:33.506967000 0.374588s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-01T20:17:33.506977000 0.374599s notice: Server ready, "eve_buro_info_nl_q2s" ba3d54a5-db79-43c6-b2ad-a84b574a582c
+2016-07-01T20:17:34.795667000 1.663236s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: Starting a new Raft election for term 2.
+2016-07-01T20:17:34.805420000 1.672990s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: This server is Raft leader for term 2. Latest log index is 2.
+2016-07-01T20:17:56.139007000 23.005947s notice: Server got SIGINT from pid 355, uid 501; shutting down...
+2016-07-01T20:17:56.139169000 23.006109s notice: Shutting down client connections...
+2016-07-01T20:17:56.139430000 23.006369s notice: All client connections closed.
+2016-07-01T20:17:56.139440000 23.006379s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-07-01T20:17:56.142061000 23.009000s notice: Storage engine shut down.
+2016-07-01T20:18:32.000044000 0.007053s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2016-07-01T20:18:32.003328000 0.010335s notice: Running on Darwin 15.3.0 x86_64
+2016-07-01T20:18:32.003396000 0.010402s notice: Loading data from directory /Users/ramon/Projects/node-server-status/rethinkdb_data
+2016-07-01T20:18:32.021978000 0.028984s info: Automatically using cache size of 100 MB
+2016-07-01T20:18:32.021986000 0.028992s warn: Cache size does not leave much memory for server and query overhead (available memory: 814 MB).
+2016-07-01T20:18:32.021991000 0.028997s warn: Cache size is very low and may impact performance.
+2016-07-01T20:18:32.023227000 0.030233s notice: Listening for intracluster connections on port 29015
+2016-07-01T20:18:32.036391000 0.043397s notice: Listening for client driver connections on port 28015
+2016-07-01T20:18:32.036527000 0.043533s notice: Listening for administrative HTTP connections on port 8080
+2016-07-01T20:18:32.036531000 0.043536s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2016-07-01T20:18:32.036533000 0.043539s notice: Listening on driver addresses: 127.0.0.1, ::1
+2016-07-01T20:18:32.036535000 0.043540s notice: Listening on http addresses: 127.0.0.1, ::1
+2016-07-01T20:18:32.036604000 0.043609s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-07-01T20:18:32.036607000 0.043612s notice: Server ready, "eve_buro_info_nl_q2s" ba3d54a5-db79-43c6-b2ad-a84b574a582c
+2016-07-01T20:18:33.102767000 1.109720s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: Starting a new Raft election for term 3.
+2016-07-01T20:18:33.111970000 1.118923s info: Table 227acd78-83c6-42d0-b5d3-7c2200449c8a: This server is Raft leader for term 3. Latest log index is 5.
