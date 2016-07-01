@@ -9,10 +9,12 @@ const server = new Hapi.Server();
 const serverList = [
     {
         "serverName":"Keystone Demo Catalogue",
+        "id": "keystone-demo-catalogue",
         "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
     },
     {
         "serverName":"Internal Demo",
+        "id": "internal-demo",
         "serverUrl":"http://internal-demo.ad.spacemetric.se:8080/servlets/soap?REQUEST=IsAlive"
     }
 ];
@@ -35,42 +37,33 @@ server.register(require('inert'), (err) => {
   server.route({
     method: 'GET',
     path: '/status/{serverName}',
-    handler(request, reply)
-    {
-        var response = Boom.notFound('Unknown server name');
+    handler(request, reply) {
+      const response = Boom.notFound('Unknown server name');
 
-        var serverSearch = request.params.serverName;
-        var found = false;
-         
-        for(var i = 0; i < serverList.length; i++){
-          if((serverList[i].serverName) === (serverSearch)){
-            var server = serverList[i];
-            console.log("found! " + serverSearch +  " " + server.serverName);
-            found = true;
+      const serverSearch = request.params.serverName;
+      const serverInList = serverList.find(s => s.id === serverSearch);
+      const found = !!serverInList;
 
-            fetch(server.serverUrl)
-              .then(res => {
-                console.log(server.serverUrl);
-                reply({
-                  name: server.serverName,
-                  url: server.serverUrl,
-                  status: true
-                });
-              })
-              .catch((err) => {
-                reply({
-                  name: server.serverName,
-                  url: server.serverUrl,
-                  status: false
-                });
-              });
-          }
-        }
+      if(!found){
+        return reply(response);
+      }
 
-        if(!found){
-          reply(response);
-        }
-    }  
+      return fetch(serverInList.serverUrl)
+        .then(res => {
+          reply({
+            name: server.serverName,
+            url: server.serverUrl,
+            status: true
+          });
+        })
+        .catch((err) => {
+          reply({
+            name: server.serverName,
+            url: server.serverUrl,
+            status: false
+          });
+        });
+    }
   })
 
   server.route({
