@@ -7,100 +7,76 @@ const server = new Hapi.Server();
 
 
 const serverList = [
-    {
-        "serverName":"Keystone Demo Catalogue",
-        "id": "keystone-demo-catalogue",
-        "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
-    },
-    {
-        "serverName":"Internal Demo",
-        "id": "internal-demo",
-        "serverUrl":"http://internal-demo.ad.spacemetric.se:8080/servlets/soap?REQUEST=IsAlive"
-    }
+  {
+    "serverName":"Keystone Demo Catalogue",
+    "id": "keystone-demo-catalogue",
+    "url":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
+  },
+  {
+    "serverName":"Internal Demo",
+    "id": "internal-demo",
+    "url":"http://internal-demo.ad.spacemetric.se:8080/servlets/soap?REQUEST=IsAlive"
+  }
 ];
 
 server.connection({ port: 4567 });
 
 server.register(require('inert'), (err) => {
+  if (err) throw err; // something bad happened loading the plugin
+});
 
-  /*
-  Returns information about all of the servers that can be checked
-  */
-  server.route({
-    method: 'GET',
-    path: '/servers',
-    handler(request, reply){
-      reply(serverList);
+server.route({
+  method: 'GET',
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: 'public'
     }
-  });
+  }
+});
 
-  server.route({
-    method: 'GET',
-    path: '/status/{serverName}',
-    handler(request, reply) {
-      const response = Boom.notFound('Unknown server name');
+server.route({
+  method: 'GET',
+  path: '/servers',
+  handler(request, reply) {
+    reply(serverList);
+  }
+});
 
-      const serverSearch = request.params.serverName;
-      const serverInList = serverList.find(s => s.id === serverSearch);
-      const found = !!serverInList;
+server.route({
+  method: 'GET',
+  path: '/status/{serverName}',
+  handler(request, reply) {
+    const response = Boom.notFound('Unknown server name');
 
-      if(!found){
-        return reply(response);
-      }
+    const serverSearch = request.params.serverName;
+    const serverInList = serverList.find(s => s.id === serverSearch);
+    const found = !!serverInList;
 
-      return fetch(serverInList.serverUrl)
-        .then(res => {
-          reply({
-            name: serverInList.serverName,
-            url: serverInList.serverUrl,
-            status: true
-          });
-        })
-        .catch((err) => {
-          reply({
-            name: serverInList.serverName,
-            url: serverInList.serverUrl,
-            status: false
-          });
-        });
+    if(!found){
+      return reply(response);
     }
-  })
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler(request, reply) {
-      reply.file('./public/hello.html');
-    }
-  });
+    return fetch(serverInList.url)
+    .then(res => {
+      reply({
+        name: serverInList.serverName,
+        url: serverInList.url,
+        status: true
+      });
+    })
+    .catch((err) => {
+      reply({
+        name: serverInList.serverName,
+        url: serverInList.url,
+        status: false
+      });
+    });
+  }
+});
 
-  server.route({
-    method: 'GET',
-    path: '/app.js',
-    handler: function (request, reply) {
-      reply.file('./public/app.js');
-    }
-  });
+server.start((err) => {
+  if (err) throw err;
 
-  server.route({
-    method: 'GET',
-    path: '/app.css',
-    handler: function (request, reply) {
-      reply.file('./public/app.css');
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/background.jpg',
-    handler: function (request, reply) {
-      reply.file('./public/background.jpg');
-    }
-  });
-
-  server.start((err) => {
-    if (err) throw err;
-    console.log('Server running at:', server.info.uri);
-  });
-
+  console.log('Server running at: ' + server.info.uri);
 });
