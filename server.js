@@ -44,12 +44,13 @@ server.register(require('inert'), (err) => {
          
         for(var i = 0; i < serverList.length; i++){
           if((serverList[i].serverName) === (serverSearch)){
-            console.log("found! " + serverSearch +  " " + serverList[i].serverName);
+            var server = serverList[i];
+            console.log("found! " + serverSearch +  " " + server.serverName);
             found = true;
 
-            fetch(fetchUrl)
+            fetch(server.serverUrl)
               .then(res => {
-                console.log(fetchUrl);
+                console.log(server.serverUrl);
                 reply({
                   name: server.serverName,
                   url: server.serverUrl,
