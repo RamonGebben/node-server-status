@@ -12,8 +12,8 @@ const serverList = [
         "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
     },
     {
-        "serverName":"Keystone Demo Catalogue 2",
-        "serverUrl":"http://keystone.spacemetric.com/servlets/soap?REQUEST=IsAlive"
+        "serverName":"Internal Demo",
+        "serverUrl":"http://internal-demo.ad.spacemetric.se:8080/servlets/soap?REQUEST=IsAlive"
     }
 ];
 
@@ -43,21 +43,23 @@ server.register(require('inert'), (err) => {
         var found = false;
          
         for(var i = 0; i < serverList.length; i++){
-          if(encodeURIComponent(serverList[i].serverName) === encodeURIComponent(serverSearch)){
+          if((serverList[i].serverName) === (serverSearch)){
+            console.log("found! " + serverSearch +  " " + serverList[i].serverName);
             found = true;
 
-            fetch(serverList[0].serverUrl)
+            fetch(fetchUrl)
               .then(res => {
+                console.log(fetchUrl);
                 reply({
-                  name: serverList[0].serverName,
-                  url: serverList[0].serverUrl,
+                  name: server.serverName,
+                  url: server.serverUrl,
                   status: true
                 });
               })
               .catch((err) => {
                 reply({
-                  name: serverList[0].serverName,
-                  url: serverList[0].serverUrl,
+                  name: server.serverName,
+                  url: server.serverUrl,
                   status: false
                 });
               });

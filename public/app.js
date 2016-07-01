@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                                     console.log("Status application running fine");
                                     response.json().then(function (json) {
                                         console.log(json);
-                                        // fillStatusList(json);
+                                        fillStatusList(json);
                                     });
 
                                 }
