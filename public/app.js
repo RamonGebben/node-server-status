@@ -2,13 +2,29 @@
   const statusUrl = '/status';
   const serversUrl = '/servers';
 
-  function buildPage(serverTemplate) {
+  const state = {
+    servers: []
+  };
+
+  function setState(obj) {
+    const oldState = Object.assign({}, state);
+
+    Object.keys(obj).forEach(key => (state[key] = obj[key]));
+
+
+    console.log('%c Old State:', 'color: red; font-weight: bold;', oldState);
+    console.log('%c Change:', 'color: grey; font-weight: bold;', obj);
+    console.log('%c New State:', 'color: #5FBA7D; font-weight: bold;', state);
+  }
+
+  function render(serverTemplate) {
+    if (serverTemplate) setState({ serverTemplate });
     return fetch(serversUrl)
       .then(res => res.json())
       .then(serverListReceived)
       .then(fetchServers)
       .then(parseServerResponse)
-      .then(getFilledTemplate.bind(null, serverTemplate))
+      .then(getFilledTemplate)
       .then(renderTemplate);
   }
 
@@ -33,19 +49,23 @@
         return new Promise((resolve, reject) => {
           const parsingPromises = resolvements.map(r => r.json());
           Promise.all(parsingPromises)
-            .then(servers => resolve(servers))
+            .then(servers => {
+              resolve(servers);
+              setState({ servers });
+            })
             .catch(err => reject(err));
         });
       });
   }
 
-  function getFilledTemplate(serverTemplate, servers) {
+  function getFilledTemplate(servers) {
     return new Promise((resolve, reject) => {
       const templates = servers.map(server => {
         const icon = server.status ? 'glyphicon-ok' : 'glyphicon-remove';
         const status = server.status ? 'success' : 'danger';
-        const filledTemplate = serverTemplate
+        const filledTemplate = state.serverTemplate
           .replace(/{serverName}/g, server.serverName)
+          .replace(/{serverUrl}/g, server.url)
           .replace(/{status}/g, status)
           .replace(/{icon}/g, icon);
 
@@ -70,6 +90,11 @@
     modal.classList.remove('show');
   }
 
+  function updateList(servers) {
+    return getFilledTemplate(servers)
+      .then(renderTemplate);
+  }
+
   function onServerSubmit(e) {
     e.preventDefault();
     const children = [].slice.call(e.srcElement.children);
@@ -91,25 +116,56 @@
     })
     .then(res => res.json())
     .then(response => {
-      console.log(response)
       closeModal();
-      buildPage(document.getElementById('server-template').innerHTML);
     })
     .catch((err) => alert(err));
   }
 
+  function getChangeType(change) {
+    if (!change.old_val) return 'create';
+    if (!change.new_val) return 'delete';
+    return 'update';
+  }
+
+  function onServerStatusChange(change) {
+    const changeType = getChangeType(change);
+    const changedServer = change.new_val || change.old_val;
+    const servers = [].concat.apply(state.servers);
+    const serverIndex = state.servers.findIndex(s => s.id === changedServer.id);
+
+    switch (changeType) {
+      case 'create':
+        console.log('-- NEW SERVER --');
+        servers.push(changedServer);
+        break;
+      case 'delete':
+        console.log('-- DELETE SERVER --');
+        servers.splice(serverIndex, 1);
+        break;
+      default:
+        servers[serverIndex] = changedServer;
+        break;
+    }
+
+    setState({ servers });
+    setTimeout(updateList.bind(null, servers), 0);
+  }
+
   document.addEventListener('DOMContentLoaded', (event) => {
-    console.info('LOADED');
+    setState({ loaded: true });
     const serverTemplate = document.getElementById('server-template').innerHTML;
     const modalBody = document.getElementById('modal-body');
     const serverForm = document.getElementById('server-form');
     const addServer = document.getElementById('addServer');
     const closeModalButton = document.getElementById('closeModal');
+    const socket = io();
+
+    socket.on('status_change', onServerStatusChange);
 
     serverForm.addEventListener('submit', onServerSubmit);
     addServer.addEventListener('click', openModal);
     closeModalButton.addEventListener('click', closeModal);
 
-    buildPage(serverTemplate);
+    render(serverTemplate);
   });
 })();

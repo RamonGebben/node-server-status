@@ -29,22 +29,7 @@ module.exports = [
     handler(request, reply) {
       getServer(request.params.id)
         .then(server => {
-          return fetch(server.url)
-            .then(res => {
-              reply({
-                serverName: server.serverName,
-                url: server.url,
-                status: true
-              });
-            })
-            .catch((err) => {
-              reply({
-                serverName: server.serverName,
-                url: server.url,
-                status: false
-              });
-            });
-
+          reply(server);
         });
     }
   }

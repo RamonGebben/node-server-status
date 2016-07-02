@@ -12,8 +12,10 @@
   "license": "MIT",
   "dependencies": {
     "hapi": "^13.4.1",
+    "hapi-io": "0.0.12",
     "inert": "^4.0.0",
     "node-fetch": "^1.5.3",
+    "node-schedule": "^1.1.1",
     "rethinkdb": "^2.3.2"
   },
   "devDependencies": {

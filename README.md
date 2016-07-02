@@ -17,9 +17,13 @@ Now you can start the node server by running:
 ```bash
 npm run dev
 ```
+If you want to run the worker as well you can do so by running:
 
+```bash
+node workers/worker.js
+```
 
-## Install rethinkdb on Mac
+## Install Rethinkdb on Mac
 
 ```bash
 brew update
