@@ -6,11 +6,11 @@ function ping(server) {
   return new Promise((resolve, reject) => {
     fetch(server.url)
       .then(res => {
-        const response = Object.assign({}, server, { status: true });
+        const response = Object.assign({}, server, { status: 'online' });
         resolve(response);
       })
       .catch(err => {
-        const response = Object.assign({}, server, { status: false });
+        const response = Object.assign({}, server, { status: 'unreachable' });
         resolve(response);
       });
   });

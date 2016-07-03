@@ -45,6 +45,7 @@ module.exports = [
       const saneObj = {
         serverName: request.payload.serverName,
         url: request.payload.serverUrl,
+        status: 'pending',
       };
 
       r.table('servers')

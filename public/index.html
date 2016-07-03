@@ -74,10 +74,28 @@
 
 <script type="text/x-template" id="server-template">
   <a href="{serverUrl}" target="_blank">
-    <div class="panel panel-{status}">
+    <div class="panel panel-{statusClass}">
       <div class="panel-heading">
-        <strong>{serverName}</strong>
-        <span class="glyphicon {icon} pull-right" aria-hidden="true"></span>
+        <strong class="pull-left">{serverName}</strong>
+        <div class="server-actions pull-right">
+          <span class="badge">{status}</span>
+          <button type="button" class="server-action">
+            <span
+              class="server-action-icon glyphicon glyphicon-trash pull-right"
+              aria-hidden="true"
+              data-id="{serverId}"
+              data-action="delete"
+            ></span>
+          </button>
+          <button type="button" class="server-action" data-id="{serverId}">
+            <span
+              class="server-action-icon glyphicon glyphicon-pencil pull-right"
+              aria-hidden="true"
+              data-id="{serverId}"
+              data-action="edit"
+            ></span>
+          </button>
+        </div>
       </div>
     </div>
   </a>
